@@ -1,0 +1,15 @@
+[27-May-2013 00:25:39] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/ebaay/public_html/BestCellPhone.us/application/controllers/tempatkost.php on line 51
+[27-May-2013 00:26:45] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/ebaay/public_html/BestCellPhone.us/application/controllers/tempatkost.php on line 51
+[27-May-2013 00:26:48] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/ebaay/public_html/BestCellPhone.us/application/controllers/tempatkost.php on line 51
+[27-May-2013 00:27:07] PHP Parse error:  syntax error, unexpected ')' in /home/ebaay/public_html/BestCellPhone.us/application/controllers/tempatkost.php on line 101
+[27-May-2013 02:02:55] PHP Parse error:  syntax error, unexpected ')' in /home/ebaay/public_html/BestCellPhone.us/application/controllers/tempatkost.php on line 101
+[27-May-2013 02:02:59] PHP Parse error:  syntax error, unexpected ')' in /home/ebaay/public_html/BestCellPhone.us/application/controllers/tempatkost.php on line 101
+[27-May-2013 02:04:46] PHP Parse error:  syntax error, unexpected ')' in /home/ebaay/public_html/BestCellPhone.us/application/controllers/tempatkost.php on line 101
+[27-May-2013 02:04:51] PHP Parse error:  syntax error, unexpected ')' in /home/ebaay/public_html/BestCellPhone.us/application/controllers/tempatkost.php on line 101
+[29-May-2013 01:58:17] PHP Fatal error:  Call to a member function result_array() on a non-object in /home/ebaay/public_html/BestCellPhone.us/application/views/dashboard_user/home.php on line 104
+[29-May-2013 04:51:06] PHP Parse error:  syntax error, unexpected '[' in /home/ebaay/public_html/BestCellPhone.us/application/controllers/dashboard_pemilik.php on line 32
+[29-May-2013 04:59:07] PHP Fatal error:  Call to a member function getAllGambar() on a non-object in /home/ebaay/public_html/BestCellPhone.us/application/controllers/imageuploader.php on line 17
+[29-May-2013 05:01:25] PHP Fatal error:  Call to a member function getAllGambar() on a non-object in /home/ebaay/public_html/BestCellPhone.us/application/controllers/imageuploader.php on line 17
+[29-May-2013 05:11:37] PHP Fatal error:  Cannot use [] for reading in /home/ebaay/public_html/BestCellPhone.us/application/models/tempat_model.php on line 81
+[29-May-2013 05:11:53] PHP Fatal error:  Cannot use [] for reading in /home/ebaay/public_html/BestCellPhone.us/application/models/tempat_model.php on line 81
+[29-May-2013 05:26:46] PHP Fatal error:  Call to undefined method stdClass::num_rows() in /home/ebaay/public_html/BestCellPhone.us/application/models/pemilik_model.php on line 28
