@@ -101,33 +101,33 @@
                                                 <div style="display: none;" id="slide-content">
                                                         <div id="slide-content-0">
                                                                 <h2>Gambar 1</h2>
-                                                                <p><?php echo $desgambars[0]?></p>
-                                                                <p class="sub-text"><?php echo $tombol?> </a></p>
+                                                                <p><?php  echo $desgambars[0]?></p>
+                                                                <p class="sub-text"><?php if($this->session->userdata('jenis')=="") {echo $tombol4;} else {echo $tombol;}?> </a></p>
                                                         </div>
                                                         <div id="slide-content-1">
                                                                 <h2>Gambar 2</h2>
                                                                 <p><?php echo $desgambars[1]?></p>
-                                                                <p class="sub-text"><?php echo $tombol?> </a></p>
+                                                                <p class="sub-text"><?php if($this->session->userdata('jenis')=="") {echo $tombol4;} else {echo $tombol;}?> </a></p>
                                                         </div>
                                                         <div id="slide-content-2">
                                                                 <h2>Gambar 3</h2>
                                                                 <p><?php echo $desgambars[2]?></p>
-                                                                <p class="sub-text"><?php echo $tombol?> </a></p>
+                                                                <p class="sub-text"><?php if($this->session->userdata('jenis')=="") {echo $tombol4;} else {echo $tombol;}?> </a></p>
                                                         </div>
                                                         <div id="slide-content-3">
                                                                 <h2>Gambar 4</h2>
                                                                 <p><?php echo $desgambars[3]?></p>
-                                                                <p class="sub-text"><?php echo $tombol?> </a></p>
+                                                                <p class="sub-text"><?php if($this->session->userdata('jenis')=="") {echo $tombol4;} else {echo $tombol;}?> </a></p>
                                                         </div>
                                                         <div id="slide-content-4">
                                                                 <h2>Gambar 5</h2>
                                                                 <p><?php echo $desgambars[4]?></p>
-                                                                <p class="sub-text"><?php echo $tombol?> </a></p>
+                                                                <p class="sub-text"><?php if($this->session->userdata('jenis')=="") {echo $tombol4;} else {echo $tombol;}?> </a></p>
                                                         </div>
                                                         <div id="slide-content-5">
                                                                 <h2>Gambar 6</h2>
                                                                 <p><?php echo $desgambars[5]?></p>
-                                                                <p class="sub-text"><?php echo $tombol?> </a></p>
+                                                                <p class="sub-text"><?php if($this->session->userdata('jenis')=="") {echo $tombol4;} else {echo $tombol;}?> </a></p>
                                                         </div>
 														
                                                 </div>
@@ -186,7 +186,7 @@
         <td><?php echo $no; ?></td>
         <td><?php echo $dp['idkamar']; ?></td>
         <td><?php echo $dp['harga']; ?></td>
-        <td><?php echo $dp['status']; ?></td>
+        <td><?php if ($dp['status']==0) {echo "Kosong";} else {echo "Terisi";}?></td>
         <td><?php echo $dp['fasilitas']; ?></td>
       </tr>
 	 <?php

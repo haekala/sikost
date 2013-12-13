@@ -19,6 +19,7 @@
   </head>
 
   <body>
+      <?php $gim= isset($_GET['gambis']) ? $_GET['gambis'] : '';?>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -78,8 +79,8 @@
 																	<?php endforeach?>
                                                                 </div>
                                                                 <!-- Carousel nav -->
-                                                                <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
-                                                                <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+                                                                <a class="carousel-control left" href="#myCarousel" data-slide="prev">ï¿½</a>
+                                                                <a class="carousel-control right" href="#myCarousel" data-slide="next">ï¿½</a>
                                                         </div>
                                                 </div>
                                                 <div class="span4" id="carousel-text"></div>
@@ -88,32 +89,32 @@
                                                         <div id="slide-content-0">
                                                                 <h2>Gambar 1</h2>
                                                                 <p><?php echo $desgambars[0]?></p>
-                                                                <p class="sub-text"><?php echo $tombol2?> </a></p>
+                                                                <p class="sub-text"><a href="<?php echo base_url();?>index.php/tempatkost/editkost?varname=<?php echo $gim ?>"><button class="btn btn-primary "><i class="icon-pencil icon-white"></i> Edit Kost</button> </a></p>
                                                         </div>
                                                         <div id="slide-content-1">
                                                                 <h2>Gambar 2</h2>
                                                                 <p><?php echo $desgambars[1]?></p>
-                                                                <p class="sub-text"><?php echo $tombol2?> </a></p>
+                                                                <p class="sub-text"><a href="<?php echo base_url();?>index.php/tempatkost/editkost?varname=<?php echo $gim ?>"><button class="btn btn-primary "><i class="icon-pencil icon-white"></i> Edit Kost</button> </a></p>
                                                         </div>
                                                         <div id="slide-content-2">
                                                                 <h2>Gambar 3</h2>
                                                                 <p><?php echo $desgambars[2]?></p>
-                                                                <p class="sub-text"><?php echo $tombol2?> </a></p>
+                                                                <p class="sub-text"><a href="<?php echo base_url();?>index.php/tempatkost/editkost?varname=<?php echo $gim ?>"><button class="btn btn-primary "><i class="icon-pencil icon-white"></i> Edit Kost</button> </a></p>
                                                         </div>
                                                         <div id="slide-content-3">
                                                                 <h2>Gambar 4</h2>
                                                                 <p><?php echo $desgambars[3]?></p>
-                                                                <p class="sub-text"><?php echo $tombol2?> </a></p>
+                                                                <p class="sub-text"><a href="<?php echo base_url();?>index.php/tempatkost/editkost?varname=<?php echo $gim ?>"><button class="btn btn-primary "><i class="icon-pencil icon-white"></i> Edit Kost</button> </a></p>
                                                         </div>
                                                         <div id="slide-content-4">
                                                                 <h2>Gambar 5</h2>
                                                                 <p><?php echo $desgambars[4]?></p>
-                                                                <p class="sub-text"><?php echo $tombol2?> </a></p>
+                                                                <p class="sub-text"><a href="<?php echo base_url();?>index.php/tempatkost/editkost?varname=<?php echo $gim ?>"><button class="btn btn-primary "><i class="icon-pencil icon-white"></i> Edit Kost</button> </a></p>
                                                         </div>
                                                         <div id="slide-content-5">
                                                                 <h2>Gambar 6</h2>
                                                                 <p><?php echo $desgambars[5]?></p>
-                                                                <p class="sub-text"><?php echo $tombol2?> </a></p>
+                                                                <p class="sub-text"><a href="<?php echo base_url();?>index.php/tempatkost/editkost?varname=<?php echo $gim ?>"><button class="btn btn-primary "><i class="icon-pencil icon-white"></i> Edit Kost</button> </a></p>
                                                         </div>
 														
                                                 </div>
@@ -143,9 +144,9 @@
                                 </div>
                         </div>
 </div>
-
+   
 <div class="well">
-<?php echo $tombol3?>
+    <a href="<?php echo base_url(); ?>index.php/tempatkost/tambahkamar?varname=<?php echo $gim ?>"<button class="btn btn-primary "><i class="icon-pencil icon-white"></i> tambah kamar</button> </a>
 <section>
   <table class="table table-hover table-condensed">
     <thead>

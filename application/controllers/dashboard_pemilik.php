@@ -2,6 +2,10 @@
 
 class Dashboard_Pemilik extends CI_Controller {
  
+      var $limit = 5; // jumlah data yg muncul
+      var $pageshow = 2; // jumlah page yg muncul
+      
+
     function __construct()
     {
         parent::__construct();
@@ -12,17 +16,20 @@ class Dashboard_Pemilik extends CI_Controller {
         /* ------------------ */ 
  
         $this->load->library('grocery_CRUD');
+        $this->load->model('Tempat_model', '', TRUE);
+        $this->load->model('Kamar_model', '', TRUE);
+
 		
     }
  
     public function index()
     {
-	
 		$email = $this->session->userdata('email');
 		$this->load->model('pemilik_model','pemmod');
 		$d['cek'] = $this->pemmod->cekcreate($email);
         if($this->session->userdata('jenis')=='pkost')
 		{
+			//$d['gambirs'] = $this->pemmod->getpic($email);
 			$d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
 			$d['judul_pendek'] = $this->config->item('nama_aplikasi_pendek');
 			$d['instansi'] = $this->config->item('nama_instansi');
@@ -39,9 +46,9 @@ class Dashboard_Pemilik extends CI_Controller {
 			else:
 			$offset = $page;
 			endif;
-			
+
 			$d['tot'] = $offset;
-			$tot_hal = $this->db->query('select nama,email, idkamar,kelamin,status,fakultas,bataswaktu  FROM pendaftaran WHERE idkost='.$idkos.' AND (status = "book" OR status = "siapbayar")');
+			$tot_hal = $this->db->query('SELECT nama,email, idkamar,kelamin,status,fakultas,bataswaktu  FROM pendaftaran WHERE idkost='.$idkos.' AND (status = "book" OR status = "siapbayar")');
 			$config['base_url'] = base_url() . 'index.php/dashboard_pemilik/index/';
 			$config['total_rows'] = $tot_hal->num_rows();
 			$config['per_page'] = $limit;
@@ -53,7 +60,7 @@ class Dashboard_Pemilik extends CI_Controller {
 			$this->pagination->initialize($config);
 			$d["paginator"] =$this->pagination->create_links();
 			
-			$d['data_user'] = $this->db->query('select nama,email, idkamar,kelamin,status,fakultas,bataswaktu  FROM pendaftaran WHERE idkost='.$idkos.' AND (status = "book" OR status = "siapbayar")');
+			$d['data_user'] = $this->db->query('SELECT nama,email, idkamar,kelamin,status,fakultas,bataswaktu  FROM pendaftaran WHERE idkost='.$idkos.' AND (status = "book" OR status = "siapbayar")');
 			$this->load->view('dashboard_pemilik/home',$d);
 		}
 
@@ -130,6 +137,124 @@ class Dashboard_Pemilik extends CI_Controller {
 		$this->session->sess_destroy();
 		header('location:'.base_url().'');
 	}
+        function tempatkost(){
+        $this->load->view('dashboard_pemilik/tempatkost_view');
+    }
+    function getdata(){
+
+        $uri_segment = 3;
+        $offset = $this->uri->segment($uri_segment);
+        $page = isset($offset) ? $offset : 1;
+        $kos = $this->Tempat_model->get_all();
+        $totaldata = count($kos);
+        $pagetotal = ceil($totaldata / $this->limit);
+        $pageshow = $pagetotal > $this->pageshow ? $this->pageshow : $pagetotal;
+        $step = floor($pageshow / 2);
+        $pagestart = ($page - $step) > 1 ? $page - $step : 1;
+        $pageend = ($page + $step) < $pagetotal ? $page + $step : $pagetotal;
+        if($pageend - $pagestart + 1 < $pageshow) {
+            $pageend = $pagestart + $pageshow - 1;
+            $pageend = $pageend > $pagetotal ? $pagetotal : $pageend;
+
+            if($pageend - $pagestart + 1 < $pageshow){
+                $pagestart = $pageend - $pageshow - 1;
+                $pagestart = $pagestart > 1 ? $pagestart : 1;
+            }
+        }
+        if($pageend - $pagestart + 1 > $pageshow) {
+            if($pageend == $pagetotal){
+                $pagestart = $pageend - $pageshow + 1;
+            }
+        }
+
+        $pagination = array();
+        for($i=$pagestart; $i<=$pageend; $i++){
+            $pagination[] = $i;
+        }
+
+        $data = array_slice($kos, ($page-1) * $this->limit, $this->limit);
+        $vData = array(
+            'page' => $page,
+            'pagefirst' => 1,
+            'pagelast' => $pagetotal,
+            'pagination' => $pagination,
+            'data' => $data,
+        );
+        echo  json_encode($vData);
+    }
+
+    function getdatakamar(){
+        $uri_segment = 3;
+        $offset = $this->uri->segment($uri_segment);
+        $page = isset($offset) ? $offset : 1;
+        $kamar = $this->Kamar_model->get_byidkost($this->uri->segment(4));
+        $totaldata = count($kamar);
+        $pagetotal = ceil($totaldata / $this->limit);
+        $pageshow = $pagetotal > $this->pageshow ? $this->pageshow : $pagetotal;
+        $step = floor($pageshow / 2);
+        $pagestart = ($page - $step) > 1 ? $page - $step : 1;
+        $pageend = ($page + $step) < $pagetotal ? $page + $step : $pagetotal;
+        if($pageend - $pagestart + 1 < $pageshow) {
+            $pageend = $pagestart + $pageshow - 1;
+            $pageend = $pageend > $pagetotal ? $pagetotal : $pageend;
+
+            if($pageend - $pagestart + 1 < $pageshow){
+                $pagestart = $pageend - $pageshow - 1;
+                $pagestart = $pagestart > 1 ? $pagestart : 1;
+            }
+        }
+        if($pageend - $pagestart + 1 > $pageshow) {
+            if($pageend == $pagetotal){
+                $pagestart = $pageend - $pageshow + 1;
+            }
+        }
+
+        $pagination = array();
+        for($i=$pagestart; $i<=$pageend; $i++){
+            $pagination[] = $i;
+        }
+
+        $data = array_slice($kamar, ($page-1) * $this->limit, $this->limit);
+        $vData = array(
+            'page' => $page,
+            'pagefirst' => 1,
+            'pagelast' => $pagetotal,
+            'pagination' => $pagination,
+            'data' => $data,
+        );
+        echo  json_encode($vData);
+    }
+
+    function insertdatakos(){
+        $data = json_decode(file_get_contents("php://input"));
+        $data->email = $this->session->userdata('email');
+        echo  $this->Tempat_model->insertkos($data);
+    }
+
+    function updatekos(){
+        $data = json_decode(file_get_contents("php://input"));
+        echo  $this->Tempat_model->updatekos($data);
+    }
+
+    function deletekos(){
+        $data = json_decode(file_get_contents("php://input"));
+        echo  $this->Tempat_model->deletekos($data);
+    }
+
+    function insertdatakamar(){
+        $data = json_decode(file_get_contents("php://input"));
+        echo  $this->Kamar_model->insertkamar($data);
+    }
+
+    function updatekamar(){
+        $data = json_decode(file_get_contents("php://input"));
+        echo  $this->Kamar_model->updatekamar($data);
+    }
+    function deletekamar(){
+        $data = json_decode(file_get_contents("php://input"));
+        echo  $this->Kamar_model->deletekamar($data);
+    }
+
 }
  
 /* End of file main.php */

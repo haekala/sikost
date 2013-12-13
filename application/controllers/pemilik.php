@@ -59,10 +59,10 @@ class Pemilik extends CI_Controller{
 		$this->load->library('form_validation');
 		// field name, error message, validation rules
 		$this->form_validation->set_rules('nama', 'User Name', 'trim|required|min_length[3]|xss_clean');
-		$this->form_validation->set_rules('email', 'Your Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email| unique[user.email]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
 		$this->form_validation->set_rules('con_password', 'Password Confirmation', 'trim|required|matches[password]');
-		$this->form_validation->set_rules('noTelp', 'No Telepon', 'trim|required|max_length[12]');
+		$this->form_validation->set_rules ('noTelp', 'No Telepon', 'trim|required| max_length[12] |min_length[7]| numeric');
 		$this->form_validation->set_rules('namakost', 'Nama Kost', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('kuota', 'Kapasitas Kost', 'trim|required');

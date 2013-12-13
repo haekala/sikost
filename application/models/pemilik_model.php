@@ -26,8 +26,45 @@ class pemilik_model extends CI_Model{
 		$kueri = $this->db->query('SELECT * FROM pemilik_kost WHERE email="'.$email.'" AND verified="0"');
 		if ($kueri->num_rows()==1)return false;
 		else return true;
-	
 	}
+
+//	public function getpic($email){
+//		//mengambil satu gambar untuk satu idkos
+//			$kuerikos = $this->db->query("SELECT tempat_kost.idkost from tempat_kost where email = '".$email."'");
+//
+//			$temp2 = $kuerikos->result();
+//			$gambir=array();
+//
+//			foreach ($temp2 as $value) {
+//				$idkos = $value->idkost;
+//
+//				$kueridua = $this->db->query('SELECT nomor FROM gambar WHERE idkost ='.$idkos);
+//				//append ke dalam array gambar
+//				$temp = $kueridua->row();
+//                               
+//				$g[1] = $temp->nomor;
+//
+//				$kueritiga = $this->db->query('SELECT * FROM tempat_kost WHERE idkost="'.$idkos.'" AND email = "'.$email.'"');
+//				$temp2 = $kueritiga->row();
+//				$g[2] = $temp2->nama;
+//				$g[3] = $temp2->tersedia;
+//				$gambir[] = $g;
+//                                
+//			}
+//                        
+//                        //die();
+////			die();
+//
+//		return $gambir;
+//	}
+
+	public function getidkos($gambar){
+		$kueri = $this->db->query('SELECT idkost FROM gambar WHERE nomor='.$gambar);
+		$row = $kueri->row();
+		
+		return $row->idkost;
+	}
+
     public function validate(){
         // grab user input
         $email = $this->input->post('email');

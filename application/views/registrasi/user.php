@@ -51,7 +51,7 @@
 	
 	<?php if(validation_errors()) { ?>
 	<div class="alert alert-block">
-	  <button type="button" class="close" data-dismiss="alert">×</button>
+	  <button type="button" class="close" data-dismiss="alert">ï¿½</button>
 	  	<h4>Terjadi Kesalahan!</h4>
 		<?php echo validation_errors(); ?>
 	</div>
@@ -59,7 +59,7 @@
 	
 	<?php if($this->session->flashdata('result_login')) { ?>
 	<div class="alert alert-block">
-	  <button type="button" class="close" data-dismiss="alert">×</button>
+	  <button type="button" class="close" data-dismiss="alert">ï¿½</button>
 	  	<h4>Terjadi Kesalahan!</h4>
 		<?php echo $this->session->flashdata('result_login'); ?>
 	</div>
@@ -74,7 +74,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputName">Nama Lengkap</label>
                     <div class="controls">
-                        <input type="text" id="Name" name="nama" placeholder="<?php echo $nama?>">
+                        <input type="text" id="Name" name="nama" placeholder="<?php echo $nama?>">&nbsp; &nbsp; minimum 3 karakter
                         <br>
                         </label>
 
@@ -84,30 +84,28 @@
                 <div class="control-group">
                     <label class="control-label" for="inputEmail">Email</label>
                     <div class="controls">
-                        <input type="text" id="Email" name="email" placeholder="<?php echo $email?>">
+                        <input type="text" id="Email" name="email" placeholder="<?php echo $email?>"> &nbsp; &nbsp;(cth : mail@mail.com)
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputPassword">Password</label>
                     <div class="controls">
-                        <input type="password" id="Password" name="password" placeholder="">
+                        <input type="password" id="Password" name="password" placeholder="">&nbsp; &nbsp; minimum 4, maksimum 34 karakter
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputPassword">Confirm Password</label>
                     <div class="controls">
-                        <input type="password" id="Confirm" name="con_password" placeholder="">
+                        <input type="password" id="Confirm" name="con_password" placeholder=""> &nbsp; &nbsp;sama dengan Password
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputNo">Nomor HP</label>
                     <div class="controls">
-                        <input type="text" id="NoHP" name="noTelp" placeholder="<?php echo $noTelp?>">
+                        <input type="text" id="NoHP" name="noTelp" placeholder="<?php echo $noTelp?>"> &nbsp; &nbsp; minimum 7, maksimum 12 digit angka
                     </div>
                 </div>
-                <br/><h4> Terms of Service</h4><br />
-				<p>Pemilik Kost harus mengikuti aturan dan ketentuan yang ditetapkan<br /> oleh pihak Sikost.  Aturan dan ketentuan dapat berubah sewaktu-waktu.  <br />
-				Kerugian dan Penipuan oleh pihak user bukanlah tanggung jawab Sikost.com. <br /> Segala bentuk pelanggaran dapat dikenai hukuman sesuai Undang-Undang <br> yang berlaku di Republik Indonesia</p>
+                <br/><h4> Terms of Service</h4><br /> <p>User harus mengikuti aturan dan ketentuan yang ditetapkan<br /> oleh pihak Sikost.  Aturan dan ketentuan dapat berubah sewaktu-waktu.  <br />Kerugian dan Penipuan oleh pihak pemilik kost bukanlah tanggung jawab Sikost.com. <br /> Segala bentuk pelanggaran dapat dikenai hukuman sesuai Undang-Undang <br> yang berlaku di Republik Indonesia</p>
                 <div class="control-group">
                     <div class="controls">
                         

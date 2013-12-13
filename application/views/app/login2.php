@@ -79,7 +79,7 @@
     <div class="caption">
       <h3><?php echo $gambar[2]?></h3>
       <p>Vacancy : <?php echo $gambar[3]?></p>
-      <p align="center"><a href= "<?php echo base_url();?>index.php/tempatkost/deskripsi/<?php echo $gambar[1]?>" class="btn btn-primary btn-block">Open</a></p>
+      <a href= "<?php echo base_url(); ?>index.php/tempatkost/deskripsi/<?php echo $gambar[1]?>?gambis=<?php echo $gambar[1] ?>" class="btn btn-primary btn-block">Open</a>    
     </div>
   </div>
 </li>

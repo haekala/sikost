@@ -54,10 +54,10 @@ class User extends CI_Controller{
 		$this->load->library('form_validation');
 		// field name, error message, validation rules
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required|min_length[3]|xss_clean');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email| unique[user.email]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
 		$this->form_validation->set_rules('con_password', 'Konfirmasi Password', 'trim|required|matches[password]');
-		$this->form_validation->set_rules('noTelp', 'No Telepon', 'trim|required|max_length[12]');
+		$this->form_validation->set_rules ('noTelp', 'No Telepon', 'trim|required| max_length[12] |min_length[7]| numeric');
 		$this->form_validation->set_rules('check', 'Menerima Persetujuan', 'required');
 		
 		if($this->form_validation->run() == FALSE)
