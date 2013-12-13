@@ -29,7 +29,7 @@ class Registrasi extends CI_Controller{
 		$this->form_validation->set_rules('nama', 'Your Name', 'trim|required');
 		$this->form_validation->set_rules('fakultas', 'Fakultas', 'trim');
 		$this->form_validation->set_rules('sex', 'sex', 'required');
-		$this->form_validation->set_rules('norek', 'nomor rekening', 'trim|required|min_length[10]|xss_clean');
+		$this->form_validation->set_rules('norek', 'nomor rekening', 'trim|required|min_length[10]|xss_clean|numeric');
 		$this->form_validation->set_rules('idkamar','kamar pilihan','required');
 		if($this->form_validation->run() == FALSE)
 		{

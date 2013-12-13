@@ -6,23 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="<?php echo base_url(); ?>asset/css/bootstrap.min.css" rel="stylesheet">
+   <link href="<?php echo base_url(); ?>asset/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>asset/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>asset/css/docs.css" rel="stylesheet">
-	
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+   <!-- <script src="http://code.jquery.com/jquery-latest.js"></script>-->
     <script src="<?php echo base_url(); ?>asset/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>asset/js/application.js"></script>
     <script src="<?php echo base_url(); ?>asset/js/bootstrap-tooltip.js"></script>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>asset/colorbox/colorbox.css" />
-	<script src="<?php echo base_url(); ?>asset/colorbox/jquery.colorbox.js"></script>
-	<script>
-		  $(document).ready(function(){
-			  //Examples of how to assign the ColorBox event to elements
-			  $(".medium-box").colorbox({rel:'group', iframe:true, width:"90%", height:"90%"});
-	
-		  });
-	</script>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>asset/colorbox/colorbox.css" />
+    <script src="<?php echo base_url(); ?>asset/colorbox/jquery.colorbox.js"></script>
+
   </head>
 
   <body>
@@ -39,7 +33,8 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="<?php echo base_url(); ?>"><i class="icon-home icon-white"></i> Beranda</a></li>
-			  <li class="active"><a href="<?php echo base_url(); ?>"><i class="icon-book icon-white"></i> Hubungi Kami</a></li>
+			  <li class="active"><a href="<?php echo base_url(); ?>index.php/dashboard_pemilik"><i class="icon-book icon-white"></i> Dashboard</a></li>
+                            <li class="active"><a href="<?php echo base_url(); ?>index.php/dashboard_pemilik/tempatkost"><i class="icon-book icon-white"></i> Tempat Kos</a></li>
             </ul>
            <div class="btn-group pull-right">
 			
@@ -81,6 +76,8 @@
 		<a href = "<?php echo base_url()?>index.php/imageuploader"><button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Atur Gambar</button></a>
 		<div class="container">
 		<?php endif ?>
+
+
 		
 		  <a class="brand" href="#">Data Pendaftar</a>
 		  <div class="nav-collapse">
@@ -95,7 +92,7 @@
 		</div>
 	  </div><!-- /navbar-inner -->
 	</div><!-- /navbar -->
-  
+
 	  <section>
   <table class="table table-hover table-condensed">
     <thead>
@@ -133,7 +130,7 @@
 	          <ul class="dropdown-menu">
 			  
 	            <li><a href='<?php echo base_url(); ?>index.php/Registrasi/changesiap/<?php echo "".$dp['idkamar']."/".$idkos."/".$dp['email']; ?>'><i class="icon-pencil"></i> Siap Bayar</a></li>
-	            <li><a href='<?php echo base_url(); ?>index.php/Registrasi/changeditolak/<?php echo "".$dp['idkamar']."/".$idkos."/".$dp['email']; ?>' onClick="return confirm('Anda yakin..???');"><i class="icon-trash"></i> Tolak</a></li>
+	            <li><a href='<?php echo base_url(); ?>index.php/Registrasi/changeditolak/<?php echo "".$dp['idkamar']."/".$idkos."/".$dp['email']; ?>' onClick="return confirm('Apakah anda yakin?');"><i class="icon-trash"></i> Tolak</a></li>
 				
 	          </ul>
 	        </div><!-- /btn-group -->
@@ -156,10 +153,6 @@
   
 
 </section>
-  </div>
-
-
-    </div> <!-- /container -->
 
   </body>
 </html>

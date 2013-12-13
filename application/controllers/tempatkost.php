@@ -20,28 +20,42 @@ class tempatkost extends CI_Controller{
 		$data['credit'] = $this->config->item('credit_aplikasi');
 		$data['alamat'] = $this->config->item('alamat_instansi');
 		$email = $this->session->userdata('email');
+                $nomor = $this->input->post('varname');
+                
+                  
 		$queri = $this->db->query('SELECT nama, kuota, tersedia, alamat, deskripsi FROM tempat_kost WHERE email="'.$email.'"');
 		$row = $queri->row();
-		$data['isinama'] = $row->nama;
+		//$data['isinama'] = $row->nama;
 		
-		$data['isikuota'] = $row->kuota;
+		//$data['isikuota'] = $row->kuota;
 		
-		$data['isitersedia'] = $row->tersedia;
+		//$data['isitersedia'] = $row->tersedia;
 		
-		$data['isialamat'] = $row->alamat;
+		//$data['isialamat'] = $row->alamat;
 		
-		$data['isideskripsi'] = $row->deskripsi;
+		//$data['isideskripsi'] = $row->deskripsi;
+                $data['isinama'] = "";
+		
+		$data['isikuota'] = "";
+		
+		$data['isitersedia'] = "";
+		
+		$data['isialamat'] = "";
+		
+		$data['isideskripsi'] = "";
 		$this->load->view('editkos',$data);
+                
 	}
 	public function edit(){
 		$this->load->library('form_validation');
 		// field name, error message, validation rules
 		$idkamar=$this->input->post('idkamar');
+                $nomor = $this->input->post('varname');
 		$this->form_validation->set_rules('nama', 'Your Kost Name', 'trim|required');
-		$this->form_validation->set_rules('kuota', 'Kost Capacity', 'trim');
-		$this->form_validation->set_rules('tersedia', 'Available Rooms', 'required');
-		$this->form_validation->set_rules('alamat', 'Address', 'trim|required|min_length[10]|xss_clean');
-		$this->form_validation->set_rules('deskripsi','Kost Description','required');
+		$this->form_validation->set_rules('kuota', 'Kost Capacity', 'trim|numeric');
+		$this->form_validation->set_rules('tersedia', 'Available Rooms', 'required|numeric');
+		$this->form_validation->set_rules('alamat', 'Address', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('deskripsi','Kost Description');
 		if($this->form_validation->run() == FALSE)
 		{
 					$this->editkost();
@@ -54,8 +68,16 @@ class tempatkost extends CI_Controller{
 			$tersedia=$this->input->post('tersedia');
 			$deskripsi=$this->input->post('deskripsi');
 			$alamat=$this->input->post('alamat');
-		$this->db->query('UPDATE tempat_kost SET nama="'.$nama.'", kuota="'.$kuota.'", tersedia="'.$tersedia.'",deskripsi="'.$deskripsi.'",alamat="'.$alamat.'" WHERE email="'.$email.'"');
-			redirect('home');
+                       
+                        
+                        $kueri = $this->db->query("SELECT distinct peg.idkost from (select idkost from tempat_kost where email='".$email."') as peg JOIN
+                                        (SELECT idkost,nomor FROM gambar g where g.nomor = '".$nomor."') as pen ON peg.idkost = pen.idkost");
+			$temp = $kueri->row();
+                        
+                        $idkos = $temp->idkost;
+                                                
+		$this->db->query("UPDATE tempat_kost SET nama='".$nama."', kuota='".$kuota."', tersedia='".$tersedia."',deskripsi='".$deskripsi."',alamat='".$alamat."' WHERE idkost='".$idkos."'");
+                redirect('home');
 		}
 	}
 	public function create(){
@@ -120,6 +142,7 @@ class tempatkost extends CI_Controller{
 		$data['tombol']='<a href="'.base_url().'index.php/Registrasi/index/'.$idkos.'	"><button class="btn btn-primary "><i class="icon-book icon-white"></i> book Kost</button> </a>';
 		$data['tombol2']='<a href="'.base_url().'index.php/tempatkost/editkost"><button class="btn btn-primary "><i class="icon-pencil icon-white"></i> Edit Kost</button> </a>';
 		$data['tombol3']='<a href="'.base_url().'index.php/tempatkost/tambahkamar"><button class="btn btn-primary "><i class="icon-pencil icon-white"></i> tambah kamar</button> </a>';
+		$data['tombol4']='<a href="'.base_url().'index.php/user"><button class="btn btn-primary "><i class="icon-book icon-white"></i> book Kost</button> </a>';
 		//ambil gambar
 		//start
 		if(true)
@@ -192,23 +215,33 @@ class tempatkost extends CI_Controller{
 		// field name, error message, validation rules
 		$idkamar=$this->input->post('idkamar');
 		$this->form_validation->set_rules('idkamar', 'Room Name', 'trim|required');
-		$this->form_validation->set_rules('harga', 'Room Price', 'trim');
+		$this->form_validation->set_rules('harga', 'Room Price', 'trim|numeric');
 		$this->form_validation->set_rules('fasilitas','Room Fasilitas','required');
+                
+
 		if($this->form_validation->run() == FALSE)
 		{
 					$this->tambahkamar();
 		}
 		else
 		{
+                        $nomor = $this->input->post('varname');
 			$email = $this->session->userdata('email');
-			$kueri = $this->db->query('SELECT idkost FROM tempat_kost WHERE email="'.$email.'"');
-			$row = $kueri->row();
-			$idkos = $row->idkost;
+			$kueri = $this->db->query("SELECT distinct peg.idkost from (select idkost from tempat_kost where email='".$email."') as peg JOIN
+                                        (SELECT idkost,nomor FROM gambar g where g.nomor = '".$nomor."') as pen ON peg.idkost = pen.idkost");
+			$temp = $kueri->row();
+                        
+                        $idkos = $temp->idkost;
+                        //echo '<pre>';
+                        //print_r($kueri);
+                        //echo '</pre>';
+                        //die();
+
+                        
 			//cek
 			
-
-			
 			$idkamar=$this->input->post('idkamar');
+                       
 			$harga=$this->input->post('harga');
 			$fasilitas=$this->input->post('fasilitas');
 			$str = implode (", ", $fasilitas);

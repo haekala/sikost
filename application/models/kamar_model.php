@@ -10,7 +10,7 @@ class kamar_model extends CI_Model{
 	function __construct(){
         parent::__construct();
     }
-
+        var $tblname = 'kamar_kost';
 	function book($idkamar,$idkos)
 	{
 		$idkos = $idkos;
@@ -69,5 +69,23 @@ class kamar_model extends CI_Model{
 		}
 		else return false;
 	}
+        function get_byidkost($idkost){
+        $sql = "SELECT * FROM kamar_kost WHERE idKost='".$idkost."'";
+        return $this->db->query($sql)->result_array();
+    }
+
+    function insertkamar($data){
+        return $this->db->insert($this->tblname, $data);
+    }
+
+    function updatekamar($data){
+        $this->db->where('idkamar', $data->idkamar);
+        return $this->db->update($this->tblname, $data);
+    }
+
+    function deletekamar($data){
+        return $this->db->delete($this->tblname, array('idkamar' => $data->idkamar));
+    }
+
 	}
 ?>
